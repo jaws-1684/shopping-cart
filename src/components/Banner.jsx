@@ -1,10 +1,10 @@
 import styles from "../styles/Banner.module.css"
 
-function Banner({children}) {
+function Banner() {
     return (<div 
         className={styles.banner}
         >
-        {children}
+        <p>Free shipping over €100</p>
     </div>)
 }
 
