@@ -6,3 +6,24 @@
   font-family: "Changa One Italic";
   src: url(./assets/fonts/Changa_One/ChangaOne-Italic.ttf);
 }
+
+:root {
+  --secondary-text-color: #ffffff;
+  --primary-text-color: #121212;
+  --text-size-xs: 0.75rem;      /* 12px */
+  --text-size-sm: 0.875rem;     /* 14px */
+  --text-size-base: 1rem;       /* 16px */
+  --text-size-lg: 1.125rem;     /* 18px */
+  --text-size-xl: 1.25rem;      /* 20px */
+  --text-size-2xl: 1.5rem;      /* 24px */
+  --text-size-3xl: 1.875rem;    /* 30px */
+  --text-size-4xl: 2.25rem;     /* 36px */
+  --text-size-5xl: 3rem;        /* 48px */
+
+  --primary-background-color: #ffffff;
+  --secondary-background-color: #121212;
+
+  --primary-font: "Changa One Regular", sans-serif;
+  --secondary-font: "Changa One Italic", sans-serif;
+  --para-font: "sans-serif";
+}
