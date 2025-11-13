@@ -1,10 +1,10 @@
 import './App.css'
-
+import Banner from './components/Banner'
 function App() {
   return (
-    <h1>
-     Ready to go
-    </h1>
+    <>
+    <Banner><p>Free shipping over €100</p></Banner>
+    </>
   )
 }
 

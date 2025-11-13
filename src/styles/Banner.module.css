@@ -1,0 +1,14 @@
+.banner {
+    background-color: var(--secondary-background-color);
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.banner > p {
+    color: white;
+    font-family: var(--primary-font);
+    font-size: var(--text-size-base)
+}
