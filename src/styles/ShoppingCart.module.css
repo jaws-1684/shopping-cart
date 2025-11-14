@@ -1,0 +1,23 @@
+.cart {
+    grid-column: 3;
+    justify-self: end;
+    align-self: center;
+    position: fixed;
+    transition: all 300ms ease-out;
+}
+.cart > a > svg:hover {
+    transition: all 300ms ease-in;
+    transform: scale(1.05);
+}
+.quantity {
+    position: relative;
+    bottom: 15px;
+    left: 20px;
+    background: var(--secondary-background-color);
+    color: var(--secondary-text-color);
+    clip-path: circle();
+    text-align: center;
+    font-family: var(--primary-font);
+    pointer-events: none;
+    font-size: var(--text-size-xs);
+}

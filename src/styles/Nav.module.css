@@ -21,12 +21,6 @@
     gap: var(--gap-sm);
     min-width: fit-content;
 }
-.cart {
-    grid-column: 3;
-    justify-self: end;
-    align-self: center;
-}
-
 .links {
     display: flex;
     gap: var(--gap-lg);

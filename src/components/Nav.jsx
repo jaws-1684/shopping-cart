@@ -1,6 +1,7 @@
 import styles from "../styles/Nav.module.css"
 import LinkTag from "./Link"
-import { Barcode, ShoppingCart } from 'lucide-react';
+import { Barcode } from 'lucide-react';
+import ShoppingCart from './ShoppingCart'
 // ::reminder refactor a to Link_to when dealing with routes
 
 function Nav() {
@@ -14,9 +15,7 @@ function Nav() {
                 <LinkTag href="/home">Home</LinkTag>
                 <LinkTag href="/shop">Shop</LinkTag>
             </div>
-            <div className={styles.cart}>
-                <LinkTag href="/cart"><ShoppingCart/></LinkTag>
-            </div>
+           <ShoppingCart className={styles.cart}/>
         </div>
     </nav>)
 }
