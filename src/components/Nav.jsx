@@ -12,7 +12,7 @@ function Nav() {
                 <p>SHOPPING CART</p>
             </div>
             <div className={styles.links}>
-                <LinkTag href="/home">Home</LinkTag>
+                <LinkTag href="/">Home</LinkTag>
                 <LinkTag href="/shop">Shop</LinkTag>
             </div>
            <ShoppingCart className={styles.cart}/>

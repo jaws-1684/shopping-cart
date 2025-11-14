@@ -1,20 +1,29 @@
 import './App.css'
 import Banner from './components/Banner'
 import Nav from './components/Nav'
-import Media from './components/Media'
 import Footer  from './components/Footer'
-import Main from './components/Main'
+import { Outlet } from 'react-router'
+import { useLoaderData } from 'react-router'
 
-function App() {
-  return (
-    <>
+export async function productLoader({ params }) {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    if (!response.ok) {
+      throw new Response("Product not found", { status: 404 }); // Custom error
+    }
+    return await response.json();
+  } catch (err) {
+    throw new Response("Server error", { status: 500 }); // Network failure
+  }
+}
+function App(props) {
+   const items = useLoaderData()
+  return (<>
     <Banner/>
     <Nav/>
-    <Media/>
-    <Main/>
+      <Outlet context={items}/>
     <Footer/>
-    </>
-  )
+    </>)
 }
 
 export default App

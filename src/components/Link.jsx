@@ -1,7 +1,8 @@
 import styles from "../styles/Link.module.css"
+import { Link } from "react-router";
 function LinkTag({href, children}) {
-    return(<a href={href} className={styles.link}> 
+    return(<Link to={href} className={styles.link}> 
         {children}
-    </a>)
+    </Link>)
 }
 export default LinkTag
