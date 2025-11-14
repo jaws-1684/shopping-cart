@@ -1,6 +1,7 @@
 .footer {
     background-color: var(--secondary-background-color);
     color: gray;
+    font-size: var(--text-size-sm);
 }
 .footer_wrapper {
     padding: var(--content-padding);
