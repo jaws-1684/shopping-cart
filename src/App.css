@@ -25,7 +25,7 @@
 
   --primary-font: "Changa One Regular", sans-serif;
   --secondary-font: "Changa One Italic", sans-serif;
-  --para-font: "sans-serif";
+  --para-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
   --gap-sm: 0.25rem;
   --gap-md: 0.5rem;
@@ -33,4 +33,5 @@
   --gap-xl: 1rem;
   --gap-2xl: 2rem;
   --content-width: clamp(70%, 100%, 90%);
+  --content-padding: clamp(1rem, 4.5vw, 1.5rem);
 }

@@ -1,0 +1,36 @@
+.footer {
+    background-color: var(--secondary-background-color);
+    color: gray;
+}
+.footer_wrapper {
+    padding: var(--content-padding);
+    width: var(--content-width);
+    margin: 0 auto;
+}
+.footer_bottom {
+    border-top: 1px solid gray;
+}
+
+.footer_bottom > p {
+    padding: var(--content-padding);
+    width: var(--content-width);
+    margin: 0 auto;
+}
+.footer h1 {
+    color: var(--secondary-text-color);
+    font-size: var(--text-size-3xl);
+    font-family: var(--primary-font);
+    margin-bottom: 0.625rem;
+}
+.link {
+    text-decoration: underline;
+    font-size: var(--text-size-lg);
+    font-family: var(--para-font);
+    color: gray;
+}
+.link:hover, .link:visited:hover  {
+    color: rgb(231, 228, 228);
+}
+.link:visited{
+    color: gray;
+}

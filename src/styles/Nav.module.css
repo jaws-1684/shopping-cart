@@ -2,7 +2,7 @@
     width: 100%;
     min-height: fit-content;
     max-height: 8rem;
-    padding: clamp(1rem, 4.5vw, 1.5rem);
+    padding: var(--content-padding);
 }
 .wrapper {
     width: var(--content-width);

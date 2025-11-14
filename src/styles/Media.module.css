@@ -22,3 +22,10 @@
     font-family: var(--primary-font);
     color: var(--secondary-text-color);
 }
+
+@media (max-width: 800px) {
+  .media {
+    background: url(../assets/img/cokile-ceoi-orW5SOudnQw-unsplash\(1\).jpg);
+  }
+}
+
