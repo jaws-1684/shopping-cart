@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Footer  from './components/Footer'
 import { Outlet } from 'react-router'
 import { useLoaderData } from 'react-router'
+import { useState } from 'react'
 
 export async function productLoader({ params }) {
   try {
@@ -16,12 +17,21 @@ export async function productLoader({ params }) {
     throw new Response("Server error", { status: 500 }); // Network failure
   }
 }
+export function Price({price}) {
+  return(<p>${price} USD</p>)
+}
 function App(props) {
-   const items = useLoaderData()
+  const items = useLoaderData()
+  const [cart, setCart] = useState({})
+
+  function handleAddToCart([key, value]) {
+    setCart({...cart, [key]: value})
+  }
+  console.log(cart)
   return (<>
     <Banner/>
-    <Nav/>
-      <Outlet context={items}/>
+    <Nav cart={cart}/>
+      <Outlet context={[items, cart, handleAddToCart]}/>
     <Footer/>
     </>)
 }

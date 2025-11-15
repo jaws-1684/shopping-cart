@@ -10,7 +10,7 @@ function categorize(items) {
     );
 }
 function Home() {
-    const items = useOutletContext()
+    const [items] = useOutletContext()
     const categories = categorize(items)
     return(<> 
     <Media/>

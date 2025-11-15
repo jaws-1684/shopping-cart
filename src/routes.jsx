@@ -2,6 +2,9 @@ import ErrorPage from "./routes/ErrorPage"
 import App from "./App"
 import Home from "./routes/Home"
 import Shop from "./routes/Shop";
+import Item from "./routes/Item";
+import Cart from "./routes/Cart"
+
 import {productLoader } from "./App"
 const routes = [
   {
@@ -12,7 +15,9 @@ const routes = [
      HydrateFallback: () => null,
      children: [
         { index: true, element: <Home />},
-        { path: "/shop", element: <Shop />}
+        { path: "/shop", element: <Shop />},
+        { path: "/items/:id", element: <Item />},
+        { path: "/cart", element: <Cart/>}
     ],
   },
 ];

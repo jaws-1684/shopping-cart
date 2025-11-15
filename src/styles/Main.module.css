@@ -24,12 +24,11 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 15vw));
     grid-template-rows: auto;
     gap: 3rem;
-    justify-content: center;
+    justify-content: start;
 }
 
 .filter {
     width: 30vw;
-    background-color: gray;
 }
 .shop_wrapper {
     display: flex;

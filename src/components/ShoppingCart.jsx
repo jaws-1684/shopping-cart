@@ -1,8 +1,10 @@
 import { ShoppingCart as Icon} from 'lucide-react';
 import styles from "../styles/ShoppingCart.module.css"
 import LinkTag from "./Link"
-function ShoppingCart (props) {
-    let size = 2
+
+function ShoppingCart ({cart}) {
+    const size = Object.values(cart).reduce((value, acc) => acc += value, 0)
+    console.log(size)
     return( <div className={styles.cart}>
                 <LinkTag href="/cart"><Icon/></LinkTag>
                 {size > 0 && <div className={styles.quantity}>{size}</div>}
