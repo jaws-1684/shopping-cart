@@ -21,27 +21,45 @@ const Fieldset = styled.div`
     justify-content: start;
     margin-bottom: 0.625rem;
     border: none;
-    input {
-        border: none;
-    }
+    font-family: var(--primary-font)
+`
+const Input = styled.input`
+    padding: 0.3125rem;
+    text-align: center;
+    border: none;
+`
+const Heading = styled.h2`
+    font-family: var(--primary-font);
+    font-size: var(--text-size-md)
 `
 function AddToCart({addToCart}) {
     const [quantity, setQuantity] = useState(0)
     const { id } = useParams()
     function handleChange (e) {
         e.preventDefault()
-        setQuantity(Number(e.target.value))
+        const value = Number(e.target.value)
+        if (value > 0 && value < 100) {
+            setQuantity(value)
+        }
     }
     function handleSubmit(e) {
         e.preventDefault()
         addToCart([id, quantity])
     }
+    const decrement = () => {
+        const res = Math.max(0, quantity - 1)
+        setQuantity(res)
+    }
+    const increment = () => {
+        const res = Math.min(99, quantity + 1)
+        setQuantity(res)
+    }
     return(<form onSubmit={handleSubmit}>
-        <p>Quantity</p>
+        <Heading>Quantity</Heading>
         <Fieldset>
-            <Button type="button">-</Button>
-            <input size="10" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric"/>
-            <Button type="button">+</Button>
+            <Button onClick={() => decrement()} type="button">-</Button>
+            <Input size="10" min="0" max="99" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric"/>
+            <Button onClick={() => increment()} type="button">+</Button>
         </Fieldset>
         <Fieldset>
             <SubmitButton type="submit">Add to Cart</SubmitButton>
