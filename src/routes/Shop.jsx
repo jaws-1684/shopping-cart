@@ -8,6 +8,7 @@ import { useState } from 'react';
 function Shop() {
     const [items] = useOutletContext()
     const [currentitems, setcurrentItems] = useState(items)
+    const [title, setTitle] = useState("products")
     const options = [{
         id: "men",
         content: "Men's Clothing"
@@ -30,19 +31,21 @@ function Shop() {
         const value = target.value
         if (value == "all" || value == "") {
             setcurrentItems(items)
+            setTitle("products")
             return
         } 
         const newItems = items.filter(item => item.category === target.value)
         setcurrentItems(newItems)
+        setTitle(value)
     }
-    return(<><Main>
-        <h1 className={styles.main_header}>All products</h1>
+    return(<Main>
+        <h1 className={styles.main_header}>{title}</h1>
         <div className={styles.shop_wrapper}>
             <div className={styles.filter}><Filter onChange={handleCategoryChange} title="Categories" options={options}/></div>
             <div className={styles.products_wrapper}>
                 {currentitems.map(cat => <ShopCard object={cat} key={cat.id}/>)}
             </div>
         </div>
-    </Main></>)
+    </Main>)
 }
 export default Shop

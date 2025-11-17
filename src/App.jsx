@@ -5,6 +5,7 @@ import Footer  from './components/Footer'
 import { Outlet } from 'react-router'
 import { useLoaderData } from 'react-router'
 import { useState } from 'react'
+import styled from 'styled-components'
 
 export async function productLoader({ params }) {
   try {
@@ -18,11 +19,17 @@ export async function productLoader({ params }) {
   }
 }
 export function Price({price}) {
-  return(<p>${price} USD</p>)
+  return(<p>${price.toFixed(2)} USD</p>)
 }
+const AppWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  `
 function App(props) {
   const items = useLoaderData()
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState({"1": 6, "2": 5})
   const [quantityAlert, setQuantityAlert] = useState(false)
 
   function handleAddToCart([key, value]) {
@@ -34,14 +41,19 @@ function App(props) {
     }
     setQuantityAlert(false) 
     setCart({...cart, [key]: value})
-    
   }
-
+  function handleRemoveFromCart(id) {
+    const copy = {...cart}
+    delete copy[id]
+    setCart(copy)
+  }
   return (<>
     <Banner/>
-    <Nav cart={cart}/>
-      <Outlet context={[items, cart, handleAddToCart, quantityAlert]}/>
-    <Footer/>
+    <AppWrapper>
+      <Nav cart={cart}/>
+        <Outlet context={[items, cart, { handleAddToCart, handleRemoveFromCart, setCart }, quantityAlert]}/>
+      <Footer/>
+    </AppWrapper>
     </>)
 }
 

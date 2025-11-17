@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components";
 import { useParams, useOutletContext } from "react-router";
-const Button = styled.button`
+export const Button = styled.button`
     padding: 0.5rem;
     border: none;
     font-family: var(--para-font);
@@ -16,25 +16,27 @@ const Button = styled.button`
 const SubmitButton = styled(Button)`
     width: 100%;
 `
-const Fieldset = styled.div`
+export const Fieldset = styled.div`
     display: flex;
     justify-content: start;
     margin-bottom: 0.625rem;
     border: none;
     font-family: var(--primary-font)
 `
-const Input = styled.input`
+export const Input = styled.input`
     padding: 0.3125rem;
     text-align: center;
     border: none;
 `
-const Heading = styled.h2`
+export const Heading = styled.h2`
     font-family: var(--primary-font);
     font-size: var(--text-size-md)
 `
-function AddToCart({addToCart}) {
+function AddToCart({addToCart, setIsAdded}) {
     const [quantity, setQuantity] = useState(0)
-    const { id } = useParams()
+    
+
+    const { id }= useParams()
     function handleChange (e) {
         e.preventDefault()
         const value = Number(e.target.value)
@@ -45,6 +47,10 @@ function AddToCart({addToCart}) {
     function handleSubmit(e) {
         e.preventDefault()
         addToCart([id, quantity])
+        setIsAdded(true)
+        setInterval(() => {
+           setIsAdded(false)
+        }, 5000);
     }
     const decrement = () => {
         const res = Math.max(0, quantity - 1)

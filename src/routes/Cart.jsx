@@ -1,39 +1,62 @@
 import { useOutletContext } from "react-router";
 import styled from "styled-components"
 import Main from "../components/Main";
+import { Price } from "../App";
+import { Button } from "../components/AddToCart";
+import CartItem from "../components/CartItem";
+import { useNavigate } from "react-router";
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-family: var(--primary-font)
+`
+const Products = styled.div`
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    border-bottom: 1px solid rgba(138, 130, 130, 0.2);
+    padding: 10px 10px;
+    gap: 20px;
+    &&:nth-child(n+3):nth-child(-n+3) {
+        border-top: 1px solid red;
+    }
 `
 function getItems(cart, items) {
     const keys = Object.keys(cart).map(id => Number(id))
     return items.filter(i => keys.includes(i.id))
 }
-function truncate(str, maxLength) {
-    if (str.length > maxLength) {
-        return str.slice(0, maxLength) + '...';
-    }
-    return str;
-}
+const Heading = styled.h1`
+    font-family: var(--primary-font);
+    font-size: var(--text-size-5xl)
+`
 const isEmpty = obj => !Object.keys(obj).length;
-const calcTotal = (items, cart) => items.reduce((acc, i) => acc += i.price * (cart[i.id]),0)
+export const calcTotal = (items, cart) => items.reduce((acc, i) => acc += i.price * (cart[i.id]),0)
 
 function Cart() {
-    const [items, cart] = useOutletContext()
+    const [items, cart, {handleAddToCart, handleRemoveFromCart, setCart}] = useOutletContext()
     const cartItems = getItems(cart, items)
+    let navigate = useNavigate();
     const total = calcTotal(cartItems, cart)
-  
     return(<Main>
-            {isEmpty(cart) && <h1>Sorry nothing here yet</h1>}
-            {!isEmpty(cart) &&  <Wrapper>
-                {cartItems.map(i => {
-                    return <>
-                      <p>{truncate(i.title, 20)}</p>
-                      <h2>total</h2>
-                      <p>{calcTotal([i], cart)}</p>
-                    </>
-                  
-                    })}
-                <p>Total</p>    
-                <p>{total}</p>
+             <Heading>Your cart</Heading>
+            {isEmpty(cart) && <Heading style={{textAlign: "center", transform: "translateY(10vh)"}}>Sorry nothing here yet</Heading>}
+            {!isEmpty(cart) && <Wrapper>
+               <Products>
+                <div>Product</div>
+                <div>Quantity</div>
+                <div>Total</div>
+                  {cartItems.map(i => <CartItem key={i.id} item={i} cart={cart} removeFromCart={handleRemoveFromCart} addToCart={handleAddToCart}/>)}
+               </Products>
+                
+                <div style={{alignSelf: "end", fontSize: "var(--text-size-2xl)"}}>
+                    <p>Total</p>    
+                    <Price price={total}/>
+                     <Button onClick={() => { 
+                        alert("Your order is on the way")
+                        navigate("/")
+                        setCart({})
+                        }}>Checkout</Button>  
+                </div>
+               
             </Wrapper>}
            
         </Main>)

@@ -32,7 +32,7 @@ const DescriptionContainer = styled.div`
         color: gray;
     }
 `
-function ItemCard({obj, addToCart}) {
+function ItemCard({obj, addToCart, setIsAdded}) {
     const { title, image, category, price } = obj
     return(<>
         <ImageContainer><Img src={image} alt={title} /></ImageContainer>
@@ -42,7 +42,7 @@ function ItemCard({obj, addToCart}) {
                 <h2>{category}</h2>
                 <Price price={price}/>
             </DescriptionContainer>
-            <AddToCart addToCart={addToCart}/>
+            <AddToCart setIsAdded={setIsAdded} addToCart={addToCart}/>
         </Wrapper>
        
     </>)
