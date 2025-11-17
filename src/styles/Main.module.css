@@ -29,7 +29,7 @@
     justify-content: start;
 }
 
-.filter {
+.filter, .all_products {
     width: 30vw;
 }
 .shop_wrapper {

@@ -50,7 +50,7 @@ function Cart() {
                 <div style={{alignSelf: "end", fontSize: "var(--text-size-2xl)"}}>
                     <p>Total</p>    
                     <Price price={total}/>
-                     <Button onClick={() => { 
+                     <Button style={{width: "100%"}}onClick={() => { 
                         alert("Your order is on the way")
                         navigate("/")
                         setCart({})
