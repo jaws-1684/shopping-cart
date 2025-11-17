@@ -9,6 +9,10 @@ const Wrapper = styled.section`
     align-items: start;
     gap: var(--gap-2xl);
     height: 100%;
+    @media (max-width: 800px) {
+        flex-direction: column;
+        padding: 0;
+    }
 `;
 
 function Item() {

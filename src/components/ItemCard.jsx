@@ -11,18 +11,23 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     padding: 1.25rem
+    @media (max-width: 800px) {
+        padding: 0;
+    }
 `
 const ImageContainer = styled.div`
     border: 1px solid rgba(138, 130, 130, 0.2);
     padding: 30px;
-      width: 40%;
+      min-width: 40%;
 `
 const DescriptionContainer = styled.div`
     width: 100%;
     height: inherit;
     font-family: var(--primary-font);
     text-transform: capitalize;
-
+    h1 {
+        font-size: var(--text-size-3xl);
+    };
     p {
         color: gray;
     }
