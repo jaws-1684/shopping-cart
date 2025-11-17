@@ -22,16 +22,25 @@ export function Price({price}) {
 }
 function App(props) {
   const items = useLoaderData()
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState([])
+  const [quantityAlert, setQuantityAlert] = useState(false)
 
   function handleAddToCart([key, value]) {
+    if (value <= 0) {
+      return
+    } else if (value > 20) {
+      setQuantityAlert(true)
+      return
+    }
+    setQuantityAlert(false) 
     setCart({...cart, [key]: value})
+    
   }
-  console.log(cart)
+
   return (<>
     <Banner/>
     <Nav cart={cart}/>
-      <Outlet context={[items, cart, handleAddToCart]}/>
+      <Outlet context={[items, cart, handleAddToCart, quantityAlert]}/>
     <Footer/>
     </>)
 }

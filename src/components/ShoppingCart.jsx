@@ -4,7 +4,6 @@ import LinkTag from "./Link"
 
 function ShoppingCart ({cart}) {
     const size = Object.values(cart).reduce((value, acc) => acc += value, 0)
-    console.log(size)
     return( <div className={styles.cart}>
                 <LinkTag href="/cart"><Icon/></LinkTag>
                 {size > 0 && <div className={styles.quantity}>{size}</div>}

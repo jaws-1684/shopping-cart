@@ -40,7 +40,7 @@ function AddToCart({addToCart}) {
         <p>Quantity</p>
         <Fieldset>
             <Button type="button">-</Button>
-            <input size="10" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric" value={quantity}/>
+            <input size="10" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric"/>
             <Button type="button">+</Button>
         </Fieldset>
         <Fieldset>
