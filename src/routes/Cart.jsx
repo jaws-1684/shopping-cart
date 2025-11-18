@@ -16,9 +16,14 @@ const Products = styled.div`
     border-bottom: 1px solid rgba(138, 130, 130, 0.2);
     padding: 10px 10px;
     gap: 20px;
-    &&:nth-child(n+3):nth-child(-n+3) {
-        border-top: 1px solid red;
-    }
+    @media(max-width: 800px) {
+        && {
+         grid-template-columns: 1fr;
+        }
+        .h {
+            display: none;
+        } 
+    }    
 `
 function getItems(cart, items) {
     const keys = Object.keys(cart).map(id => Number(id))
@@ -29,7 +34,9 @@ const Heading = styled.h1`
     font-size: var(--text-size-5xl)
 `
 const isEmpty = obj => !Object.keys(obj).length;
-export const calcTotal = (items, cart) => items.reduce((acc, i) => acc += i.price * (cart[i.id]),0)
+export function calcTotal (items, cart) {
+    return items.reduce((acc, i) => acc += i.price * (cart[i.id]),0)
+}
 
 function Cart() {
     const [items, cart, {handleAddToCart, handleRemoveFromCart, setCart}] = useOutletContext()
@@ -41,9 +48,9 @@ function Cart() {
             {isEmpty(cart) && <Heading style={{textAlign: "center", transform: "translateY(10vh)"}}>Sorry nothing here yet</Heading>}
             {!isEmpty(cart) && <Wrapper>
                <Products>
-                <div>Product</div>
-                <div>Quantity</div>
-                <div>Total</div>
+                <div className="h">Product</div>
+                <div className="h">Quantity</div>
+                <div className="h">Total</div>
                   {cartItems.map(i => <CartItem key={i.id} item={i} cart={cart} removeFromCart={handleRemoveFromCart} addToCart={handleAddToCart}/>)}
                </Products>
                 

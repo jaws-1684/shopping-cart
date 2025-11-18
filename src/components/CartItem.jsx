@@ -13,28 +13,36 @@ function truncate(str, maxLength) {
 const Container = styled.div`
     display: flex;
     gap: 1.25rem;
-
+    
     @media (max-width: 800px) {
         && {
-            flex-direction: column;
+            width: 100%;
         }
     }
 `
-
+const Total = styled.div`
+    .total { display: none };
+     @media (max-width: 800px) {
+        .total {
+            display: block;
+        }    
+    }
+`
 function CartItem({item, cart, addToCart, removeFromCart}) {
     return(<>
         <Container>
              <img style={{width: "50px"}}src={item.image} alt="" />
              <div>
-                <p>{truncate(item.title, 20)}</p>
+                <p>{truncate(item.title, 40)}</p>
                 <Price price={item.price}/>
              </div>
         </Container>
        
         <UpdateCart  id={item.id} pquantity={cart[item.id]} removeFromCart={removeFromCart} addToCart={addToCart}/>
-        <div>
+        <Total>
+            <div className="total">Total:</div>
             <Price price={calcTotal([item], cart)}/>
-        </div>   
+        </Total>   
     </>)
 }
 export default CartItem

@@ -6,14 +6,23 @@ const Form = styled.form`
     display: flex;
     align-items: center;
     gap: 5px;
+    .total {
+        display: none;
+    }
     &&:hover {
         cursor: pointer;
     }
-    @media (max-width: 1200px) {
+    @media (min-width: 800px and max-width: 1200px) {
         &&{
             flex-direction: column;
         }
     }
+    @media (max-width: 800px) {
+        && {
+            justify-content: space-between;
+        }
+       
+    }    
 `
 function UpdateCart({addToCart, removeFromCart, id, pquantity}) {
         const [quantity, setQuantity] = useState(pquantity || 0)
@@ -45,7 +54,6 @@ function UpdateCart({addToCart, removeFromCart, id, pquantity}) {
         }
         return(<Form>
             <Fieldset>
-
                 <Button onClick={() => decrement()} type="button">-</Button>
                 <Input size="10" min="0" max="99" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric"/>
                 <Button onClick={() => increment()} type="button">+</Button>       
