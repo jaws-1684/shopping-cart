@@ -9,8 +9,8 @@ function categorize(items) {
         a.findIndex(({ category }) => v.category === category) === i
     );
 }
-function Home() {
-    const [items] = useOutletContext()
+function Home(props) {
+    const [items] = props.data || useOutletContext()
     const categories = categorize(items)
     return(<> 
     <Media/>
