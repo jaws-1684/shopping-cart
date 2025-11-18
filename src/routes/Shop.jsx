@@ -13,7 +13,8 @@ function Shop(props) {
     const { scope } = props.scope || useParams()
     useEffect(() => {
         if (scope && scope.length > 0) {
-            filterBy(scope)
+            const id = options.filter(o => o.category === scope)[0].id
+            filterBy(id)
         }
         return  () => {
             setcurrentItems(items)
