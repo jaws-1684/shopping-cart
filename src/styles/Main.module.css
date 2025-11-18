@@ -37,6 +37,9 @@
     gap: 1.25rem;
    
 }
+option {
+  text-transform: capitalize;
+}
 @media (max-width: 800px) {
   .products_wrapper {
     width: 100%;

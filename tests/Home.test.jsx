@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Home from '../src/routes/Home';
 import { MemoryRouter } from 'react-router';
-import { beforeEach, vi } from 'vitest';
+import { beforeEach } from 'vitest';
 
 const items = [[
     { category: "men" }, {category: "women"}

@@ -6,12 +6,11 @@ import styles from "../styles/Main.module.css"
 import { useEffect, useState } from 'react';
 import LinkTag from "../components/Link.jsx"
 
-function Shop() {
-    const [items] = useOutletContext()
+function Shop(props) {
+    const [items] = props.data || useOutletContext()
     const [currentitems, setcurrentItems] = useState(items)
     const [title, setTitle] = useState("products")
-    const { scope } = useParams()
-
+    const { scope } = props.scope || useParams()
     useEffect(() => {
         if (scope && scope.length > 0) {
             filterBy(scope)
@@ -23,31 +22,36 @@ function Shop() {
     }, [scope])
   
     const options = [{
-        id: "men",
-        content: "Men's Clothing"
+        id: 1,
+        name: "men",
+        category: "men's clothing"
     },
     {
-        id: "women",
-        content: "Women's Clothing"
+        id: 2,
+        name: "women",
+        category: "women's clothing"
     },
     {
-        id: "jewelery",
-        content: "Jewelery"
+        id: 3,
+        name: "jewelery",
+        category: "jewelery"
     },
-    {
-        id: "electronics",
-        content: "Electronics"
+    {   id: 4,
+        name: "electronics",
+        category: "electronics"
     }
     ]
-    function filterBy (value) {
-        if (value == "all" || value == "") {
+    function filterBy (idx) {
+        if (idx == 0) {
             setcurrentItems(items)
             setTitle("products")
             return
-        } 
-        const newItems = items.filter(item => item.category === value)
+        }
+        const [opt] = options.filter(o => o.id === Number(idx))
+        const cat = opt.category
+        const newItems = items.filter(item => item.category === cat)
         setcurrentItems(newItems)
-          setTitle(value)
+          setTitle(cat)
     }
     function handleCategoryChange(e) {
         const target = e.target
@@ -55,7 +59,7 @@ function Shop() {
         filterBy(value)
     }
     return(<Main>
-        <h1 className={styles.main_header}>{title}</h1>
+        <h1 data-testid="header" className={styles.main_header}>{title}</h1>
         <div className={styles.shop_wrapper}>
             {scope && <div  className={styles.all_products}><LinkTag href="/shop">All Products</LinkTag></div>}
             {!scope && <div className={styles.filter}><Filter onChange={handleCategoryChange} title="Categories" options={options}/></div>}
