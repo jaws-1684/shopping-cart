@@ -1,5 +1,20 @@
 import { Fieldset, Input, Button } from "./AddToCart"
 import { useState } from "react"
+import { Trash } from "lucide-react"
+import styled from "styled-components"
+const Form = styled.form`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    &&:hover {
+        cursor: pointer;
+    }
+    @media (max-width: 1200px) {
+        &&{
+            flex-direction: column;
+        }
+    }
+`
 function UpdateCart({addToCart, removeFromCart, id, pquantity}) {
         const [quantity, setQuantity] = useState(pquantity || 0)
         function handleChange (e) {
@@ -28,12 +43,18 @@ function UpdateCart({addToCart, removeFromCart, id, pquantity}) {
             setQuantity(res)
             addToCart([id, res])
         }
-        return(<form>
+        return(<Form>
             <Fieldset>
+
                 <Button onClick={() => decrement()} type="button">-</Button>
                 <Input size="10" min="0" max="99" onClick={e => e.preventDefault()} value={quantity} onChange={handleChange} type="numeric"/>
-                <Button onClick={() => increment()} type="button">+</Button>
-            </Fieldset>            
-        </form>)
+                <Button onClick={() => increment()} type="button">+</Button>       
+            </Fieldset>
+            <Fieldset>
+                 <Trash onClick={() => removeFromCart(id)}style={{
+                    fill: "red"
+                }}/> 
+            </Fieldset>
+        </Form>)
 }
 export default UpdateCart

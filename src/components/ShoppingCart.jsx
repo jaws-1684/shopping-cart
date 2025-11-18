@@ -3,8 +3,8 @@ import styles from "../styles/ShoppingCart.module.css"
 import LinkTag from "./Link"
 
 function ShoppingCart ({cart}) {
-    const size = Object.values(cart).reduce((value, acc) => acc += value, 0)
-    return( <div className={styles.cart}>
+    const size = cart ? Object.values(cart).reduce((value, acc) => acc += value, 0) : 0
+    return( <div data-testid="cart"className={styles.cart}>
                 <LinkTag href="/cart"><Icon/></LinkTag>
                 {size > 0 && <div className={styles.quantity}>{size}</div>}
             </div>)
