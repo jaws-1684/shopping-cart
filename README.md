@@ -1,5 +1,5 @@
 # shopping-cart.jsx - Shopping Cart Mock
-<a href="https://shopping-cart-kftb1zsxn-jaws-1684s-projects.vercel.app/">View Demo</a>
+<a href="https://shopping-cart-gamma-teal.vercel.app/">View Demo</a>
 
 ## Description
 The *idea* behind this project is to put together concepts like testing, routing and data fetching in React.
